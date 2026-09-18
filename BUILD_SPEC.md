@@ -50,7 +50,7 @@ OUTPUTS:        CHARTER.md            the programme's scope and commitments
                 code/provenance.py              fetch logging
                 site/index.html       the public programme site
 
-VENUES:         GitHub repository and Pages site (the [project URL] of record);
+VENUES:         GitHub repository and Pages site (the project URL of record);
                 Zenodo deposit with a concept DOI covering all versions.
 
 VERIFY POINTS:  1. The charter describes a programme the author is willing to

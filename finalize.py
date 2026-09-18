@@ -75,19 +75,61 @@ def tracked_text_files() -> list[Path]:
     return sorted(files)
 
 
+# The general net, added because the specific list above failed. On 18 September
+# 2026 this gate passed a repository containing '[repository URL]' and
+# '[project URL]' — neither in the list, because the list held '[URL]' exactly.
+# A gate that only catches the mistakes someone thought of in advance is not a
+# gate, so placeholders are now caught by shape rather than by name.
+#
+# Deliberately narrow in shape, not in vocabulary: a bracketed phrase that
+# begins with a letter, contains a space, and holds nothing but letters,
+# digits, spaces and . - _ — which is what a human writes when leaving a blank
+# to fill ('[project URL]', '[your name here]', '[DOI pending first deposit]')
+# and is not what code looks like. A first attempt without the space and
+# character rules flagged Python slices and 'github-actions[bot]'.
+GENERIC_PLACEHOLDER = re.compile(r"\[[A-Za-z][A-Za-z0-9 ._-]*\]")
+
+# Only prose is scanned by the general net. Code legitimately contains brackets.
+GENERIC_SCAN_SUFFIXES = {".md", ".html", ".cff", ".txt"}
+
+
+def _is_real_placeholder(text: str, match: re.Match) -> bool:
+    """Filter the bracketed things that are legitimately not placeholders."""
+    token = match.group(0)
+    if " " not in token:
+        return False                      # '[bot]', '[MIT]' — not a blank to fill
+    after = text[match.end(): match.end() + 1]
+    if after in ("(", ":"):
+        return False                      # markdown link, or link-reference definition
+    return True
+
+
 def check_placeholders(files: list[Path]) -> list[str]:
     problems = []
+    seen = set()
     for path in files:
-        if path.relative_to(REPO_ROOT).as_posix() in EXEMPT_FROM_PLACEHOLDER_SCAN:
+        rel = path.relative_to(REPO_ROOT).as_posix()
+        if rel in EXEMPT_FROM_PLACEHOLDER_SCAN:
             continue
         text = path.read_text(encoding="utf-8", errors="replace")
+
+        def record(match):
+            line = text[: match.start()].count("\n") + 1
+            key = (rel, line, match.group(0))
+            if key in seen:
+                return
+            seen.add(key)
+            problems.append(
+                f"{rel}:{line}  unfilled placeholder {match.group(0)!r}"
+            )
+
         for pattern in PLACEHOLDER_PATTERNS:
             for match in re.finditer(pattern, text):
-                line = text[: match.start()].count("\n") + 1
-                problems.append(
-                    f"{path.relative_to(REPO_ROOT)}:{line}  unfilled placeholder "
-                    f"{match.group(0)!r}"
-                )
+                record(match)
+        if path.suffix.lower() in GENERIC_SCAN_SUFFIXES:
+            for match in GENERIC_PLACEHOLDER.finditer(text):
+                if _is_real_placeholder(text, match):
+                    record(match)
     return problems
 
 
