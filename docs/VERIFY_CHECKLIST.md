@@ -65,8 +65,11 @@ deliberate, and the way past it is to resolve them, not to bypass the check.
 - [x] **Download URL checked, 16 September 2026 — and it settled the design.**
       The download comes from a `blob:` URL, meaning the file is built by
       JavaScript inside the browser. No server address exists for a script to
-      fetch, so the keyless bulk route **cannot be automated**. The API is now
-      the workflow's only route.
+      fetch, so the keyless bulk route **cannot be automated**. The API became
+      the workflow's route on that basis — a decision reversed on 18 September
+      when the API turned out to return only 30-80% of each register. The
+      download is the archive's capture; the API run is a backstop. See
+      CHARTER.md standard 9.
 - [x] **Local Food Directories API key obtained, 17 September 2026.** Required,
       not optional — without it the monthly snapshot cannot run at all.
 - [ ] **Store the key as a GitHub secret.** Repository → Settings → Secrets and
@@ -106,30 +109,32 @@ deliberate, and the way past it is to resolve them, not to bypass the check.
 - [ ] The affiliation statement does not imply MTSU sponsors or endorses the
       programme, because it does not.
 
-## 5. The snapshot actually runs
+## 5. The snapshot is real and complete
 
-This can be done entirely in the browser — Actions tab, **Monthly register
-snapshot**, **Run workflow** — or locally with Python if you prefer. Either
-satisfies this section. Step 8 of your publish guide (kept separately, outside
-this repository) has both routes.
+The archive's capture is the browser download, not the automated API run. See
+CHARTER.md standard 9 for why. Both may exist for a month; the download is the
+one that counts.
 
-- [ ] The snapshot has been run at least once, by either route.
-      **It has never been run against the live USDA endpoints** — the build
-      environment blocked those hosts — so this is a real test, not a
-      confirmation. Expect it to need adjusting.
-- [ ] It fetched all five directories (agritourism, csa, farmersmarket,
-      foodhub, onfarmmarket), with plausible sizes for each.
-- [ ] The API route was used, with `LOCALFOOD_API_KEY` set. There is no other
-      automatable route; the keyless download is browser-only.
-- [ ] `data/raw/snapshots/YYYY-MM/` exists and holds five files.
-- [ ] The row counts look plausible against the site's own totals — roughly
-      13,569 agritourism, 7,148 farmers market, 4,692 on-farm market, 2,002 CSA,
-      480 food hub as of 16 September 2026. A directory returning far fewer means
-      the state iteration is dropping jurisdictions.
-- [ ] `data/raw/PROVENANCE.txt` has one line per fetched file, with plausible
-      byte counts and hashes.
-- [ ] A calendar reminder exists to check the Actions tab every two months,
-      because GitHub disables scheduled workflows after about 60 days of
+- [ ] All five directories were downloaded from
+      https://www.usdalocalfoodportal.com/fe/datasharing/ and folded in with
+      `code/00_adopt_manual_snapshot.py`.
+- [ ] `data/raw/snapshots/YYYY-MM/` holds five `.xlsx` files.
+- [ ] The row counts match USDA's own published totals. As of 18 September 2026:
+      13,569 agritourism, 7,148 farmers market, 4,692 on-farm market,
+      2,002 CSA, 480 food hub. These are exact, not approximate — the download
+      matched them row for row. A directory materially short of its total means
+      something is wrong with the capture, not with the total.
+- [ ] `listing_id` is unique within each file. Duplicates would mean the
+      download is not what it appears to be.
+- [ ] `data/raw/PROVENANCE.txt` has one line per file, each recording a MANUAL
+      browser download, with plausible byte counts and hashes.
+- [ ] Any `*.partial.csv` files present are understood to be the automated API
+      backstop, and their provenance lines say PARTIAL CAPTURE. Nothing in this
+      repository treats them as a full register.
+- [ ] A calendar reminder exists for the monthly download — this is now a task a
+      person does, so nothing catches a missed month automatically.
+- [ ] A second calendar reminder exists to check the Actions tab every two
+      months, because GitHub disables scheduled workflows after about 60 days of
       repository inactivity and does so quietly enough to miss.
 
 ## 6. Placeholders are filled

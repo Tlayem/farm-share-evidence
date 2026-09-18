@@ -252,8 +252,40 @@ def fetch_bulk(sess: requests.Session, directory: str, out_dir: Path,
 
 def fetch_via_api(sess: requests.Session, directory: str, out_dir: Path,
                   api_key: str, dry_run: bool) -> Path | None:
+    """Sweep the API state by state. THIS DOES NOT CAPTURE THE WHOLE REGISTER.
+
+    Measured 18 September 2026 against the same day's bulk download:
+
+        directory        bulk     API    API got
+        agritourism    13,569  10,389        77%
+        farmersmarket   7,148   5,687        80%
+        onfarmmarket    4,692   1,401        30%
+        csa             2,002     753        38%
+        foodhub           480     185        39%
+
+    The bulk download matches USDA's own published totals exactly, with no
+    duplicate identifiers, so the shortfall is the API's. It is not a result
+    cap: no per-query limit from 50 to 1,000, applied to the real per-state
+    distribution, reproduces this pattern, and for CSAs and food hubs the API
+    returned fewer rows than a limit of 50 would have. The `state` parameter is
+    evidently filtering on some field other than the free-text address, and
+    populated for only part of the register — which cannot be swept around,
+    because there is no way to see which records it is blind to.
+
+    The API also returns about nine fields where the bulk download returns
+    85 to 264, including every product, facility, season, production-method and
+    sales-channel field the analysis actually needs.
+
+    So this route is kept only as a backstop: an imperfect automatic capture in
+    a month when nobody clicks is worth more than no capture at all. Its output
+    is named `.partial.csv` and says so in its provenance line. The complete
+    capture is the browser download, adopted with
+    code/00_adopt_manual_snapshot.py. See CHARTER.md standard 9.
+    """
     endpoint = f"{PORTAL}/api/{directory}/"
-    destination = out_dir / f"{directory}.csv"
+    # The filename itself carries the warning. Someone who finds this file in
+    # ten years, with no documents to hand, still knows what they have.
+    destination = out_dir / f"{directory}.partial.csv"
 
     if dry_run:
         print(f"    would call {endpoint} for {len(JURISDICTIONS)} jurisdictions")
@@ -420,8 +452,15 @@ def fetch_via_api(sess: requests.Session, directory: str, out_dir: Path,
         destination,
         source_url=endpoint,
         discovered_via=f"API, iterated {len(JURISDICTIONS)} jurisdictions",
-        note=f"Local Food Directories API: {directory}. {len(rows)} unique "
-             f"listings. {failed_note} {empty_note} {redaction_note} "
+        note=f"PARTIAL CAPTURE — NOT THE WHOLE REGISTER. Local Food "
+             f"Directories API state sweep: {directory}, {len(rows)} unique "
+             f"listings. Measured 18 Sept 2026, this route returns 30-80% of "
+             f"the register depending on directory, and about nine fields "
+             f"where the bulk download returns 85-264. The complete capture "
+             f"for any month is the browser download adopted via "
+             f"code/00_adopt_manual_snapshot.py; use that in preference to "
+             f"this file wherever both exist. See CHARTER.md standard 9 and "
+             f"docs/SOURCES.md. {failed_note} {empty_note} {redaction_note} "
              f"Current-state register; no public archive.",
     )
     print(f"    {len(rows):,} listings  {record['bytes']:,} bytes")
@@ -506,6 +545,24 @@ def main() -> int:
         return 1
 
     print("Provenance logged to data/raw/PROVENANCE.txt")
+
+    if args.route == "api":
+        print()
+        print("!" * 60)
+        print("THESE ARE PARTIAL CAPTURES. The API state sweep returns roughly")
+        print("30-80% of each register, and about nine fields where the bulk")
+        print("download returns 85-264. Files are named *.partial.csv for that")
+        print("reason.")
+        print()
+        print("The complete capture is the browser download:")
+        print(f"  {PORTAL}/fe/datasharing/")
+        print("Download all five directories, then:")
+        print("  python code/00_adopt_manual_snapshot.py <folder> --month "
+              f"{now.strftime('%Y-%m')}")
+        print("Do that at least once a month. This automated run exists so a")
+        print("month is never lost entirely, not to replace it.")
+        print("!" * 60)
+
     print("\nNext: commit the provenance log, and update the snapshot count in")
     print("docs/ARTIFACTS.md by reading it from the log — never by hand.")
     return 0

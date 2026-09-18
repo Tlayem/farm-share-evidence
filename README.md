@@ -59,20 +59,48 @@ docs/VERIFY_CHECKLIST.md          pre-release checklist
 site/index.html                   the public programme site
 ```
 
-## Running the snapshot
+## Taking the monthly snapshot
 
-It runs on its own. `.github/workflows/snapshot.yml` fires on the first of each
-month, calls the Local Food Directories API from GitHub's servers, and commits
-whatever comes back. You can also start it by hand from the Actions tab. Nothing
-has to be installed.
+The real snapshot is taken by hand, once a month, and it takes about five
+minutes. Go to https://www.usdalocalfoodportal.com/fe/datasharing/, download all
+five directories, and fold them into the archive:
 
-You do need a free API key. Register at
-https://www.usdalocalfoodportal.com/fe/fregisterpublicapi/ and save it as a
-repository secret called `LOCALFOOD_API_KEY`. It is the only route a script can
-use; the keyless download on the Data Sharing page works in a browser and
-nowhere else, for reasons set out in [`docs/SOURCES.md`](docs/SOURCES.md).
+```bash
+python code/00_adopt_manual_snapshot.py ~/Downloads/usda --month 2026-09
+```
 
-To run it yourself you need Python 3.9 or later:
+That copies them into `data/raw/snapshots/YYYY-MM/` and writes a provenance line
+per file recording that a person downloaded them, not a script. Then commit.
+
+I would rather this were automatic, and for a while I thought it was. It is not,
+and the reason matters enough to state plainly here rather than bury.
+
+The Data Sharing page builds its files in the browser and serves them from a
+`blob:` URL, so no script can fetch them. USDA also publishes an API, which a
+script *can* call, and the obvious move was to use it. On 18 September 2026 I
+compared the two on the same day:
+
+| directory | full download | API sweep | API got |
+|---|---|---|---|
+| agritourism | 13,569 | 10,389 | 77% |
+| farmers market | 7,148 | 5,687 | 80% |
+| on-farm market | 4,692 | 1,401 | 30% |
+| CSA | 2,002 | 753 | 38% |
+| food hub | 480 | 185 | 39% |
+
+The download matches USDA's own totals exactly. The API does not, it is not a
+result cap, and I cannot tell which records it is blind to. It also returns
+about nine fields where the download returns 85 to 264 — every product,
+facility, season and sales-channel field lives only in the download.
+
+So the API run still happens, monthly, from `.github/workflows/snapshot.yml`,
+because a thin capture in a month I am ill or travelling beats no capture at
+all. Its files are named `*.partial.csv` and say so in their provenance. Prefer
+the `.xlsx` for any month that has one.
+
+If you want to run the API route yourself you need Python 3.9 or later and a
+free key from https://www.usdalocalfoodportal.com/fe/fregisterpublicapi/, saved
+as a repository secret called `LOCALFOOD_API_KEY`:
 
 ```bash
 git clone https://github.com/Tlayem/farm-share-evidence.git
@@ -81,17 +109,16 @@ pip install requests
 LOCALFOOD_API_KEY=your-key python code/01_snapshot_registers.py
 ```
 
-It fetches all five directories into `data/raw/snapshots/YYYY-MM/` and writes one
-provenance line per file to `data/raw/PROVENANCE.txt`. Add `--dry-run` to see
-what it would do without writing anything.
+Add `--dry-run` to see what it would do without writing anything.
 
-One thing it deliberately does not keep. USDA returns a contact email and phone
-number with every listing, and the snapshot drops both before writing. These
-directories are mostly small farms, and a monthly public file of tens of
+One thing the API route deliberately does not keep. It returns a contact email
+and phone number with every listing, and the snapshot drops both before writing.
+These directories are mostly small farms, and a monthly public file of tens of
 thousands of personal addresses and mobile numbers is not the same thing as
 USDA's own search box, whatever the licence permits. Listings are matched
 between months by `listing_id` instead, so nothing analytical is lost.
-[`CHARTER.md`](CHARTER.md) standard 8 has the full reasoning.
+[`CHARTER.md`](CHARTER.md) standard 8 has the full reasoning. The bulk download
+carries no contact fields at all, which is one more reason to prefer it.
 
 Files you download by hand are still worth keeping. `code/00_adopt_manual_snapshot.py`
 folds them into the archive and records that a person fetched them, not a script.

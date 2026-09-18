@@ -1,10 +1,19 @@
 """Fold browser-downloaded directory files into the archive, honestly.
 
+THIS IS THE ARCHIVE'S CAPTURE. Run it every month.
+
 The Data Sharing page builds its downloads in the browser (see the note at the
 top of 01_snapshot_registers.py), so files obtained by clicking cannot be
-obtained by a script. They are still perfectly good archive material — they are
-what USDA served on the day — and a snapshot taken by hand before the automation
-existed is worth keeping rather than discarding for being untidy.
+obtained by a script. For a while this script was the tidy-up for files
+downloaded before the automation existed. It is not that any more.
+
+Measured 18 September 2026, the same day by both routes, the browser download
+returned 13,569 agritourism / 7,148 farmers market / 4,692 on-farm market /
+2,002 CSA / 480 food hub listings, matching USDA's published totals exactly. The
+automated API sweep returned 77% / 80% / 30% / 38% / 39% of those, with about
+nine fields against the download's 85 to 264. So the inconvenient route is the
+complete one, and the convenient route is a backstop. CHARTER.md standard 9 sets
+that out as a rule: completeness outranks automation.
 
 This script copies those files into the right month's folder and writes a
 provenance record that says plainly how they were obtained. It does not pretend

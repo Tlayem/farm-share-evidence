@@ -164,6 +164,15 @@ fails one is not released.
    single point where the archive does not preserve what was published, it is
    recorded in the provenance line of every affected file, and the script
    refuses to write a file at all if the redaction fails.
+9. **Completeness outranks automation.** Where an agency offers both a
+   convenient machine route and a complete one, the complete route is the
+   archive's capture and the convenient one is at most a backstop, labelled as
+   partial in its filename and its provenance. This programme learned the rule
+   the hard way: its first automated harvester captured between 30 and 80 per
+   cent of each register, and about nine fields where the full download carries
+   85 to 264, while reporting success. A partial capture presented as a
+   snapshot is worse than a missing month, because a missing month announces
+   itself and a quiet gap does not.
 
 ## 6. What the programme is not
 

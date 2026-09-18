@@ -118,6 +118,24 @@ report.
 
 ---
 
+## Possible automation of the Local Food Directories capture
+
+**PLANNED, NOT ATTEMPTED.** The monthly capture is taken by hand because the
+API's state sweep proved substantially incomplete (30–80% of each register; see
+`SOURCES.md`, 18 September 2026) and the bulk download cannot be fetched by a
+script. One route remains untried: the API also accepts `x`, `y` and `radius`,
+and coordinates are present for 99.3% of listings in the bulk download. A grid
+of overlapping radius queries — the documented maximum is 100 miles — covering
+the United States might return what the state sweep misses, since it would not
+depend on whatever address-derived field the state filter uses.
+
+It is worth trying, on one condition that is not negotiable: it may only replace
+the manual download if a grid capture is compared against a same-day bulk
+download and matches it. An automation that is merely *better* than the state
+sweep is not good enough, because the failure mode is a silent gap. Until such a
+comparison passes, the manual download remains the archive's capture and any
+automated route is labelled partial.
+
 ## Dependencies worth stating plainly
 
 - Everything in the intermediation strand needs a MARS API key.
