@@ -2,11 +2,6 @@
 
 **Charter, version 0.1.0 — 15 September 2026**
 
-> **DRAFT — pending author verification.** This charter has not yet been
-> reviewed and signed off by the author. It is not published, cited, or
-> circulated until `docs/VERIFY_CHECKLIST.md` is complete. Run
-> `python finalize.py` to remove this banner once it is.
-
 Founder and maintainer: Taiwo Fausiyat Adesiyan (ORCID
 [0000-0002-2023-3624](https://orcid.org/0000-0002-2023-3624)), Middle Tennessee
 State University, Murfreesboro, Tennessee, USA.
@@ -222,4 +217,10 @@ what changed and why.
 ---
 
 *Cite as: Adesiyan, T. F. (2026). The Farm Share Evidence Program: Charter,
-version 0.1.0. [DOI pending first Zenodo deposit]*
+version 0.1.0. https://github.com/Tlayem/farm-share-evidence*
+
+*No DOI exists for this version. A DOI cannot be minted until a release is
+deposited, and a release should not carry a citation line for an identifier that
+does not yet resolve. The first Zenodo deposit mints a concept DOI covering all
+versions; it will be recorded here, and in `CITATION.cff` and
+`docs/ARTIFACTS.md`, in the version that follows.*

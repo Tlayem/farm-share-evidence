@@ -49,9 +49,19 @@ SECRET_PATTERNS = [
 ]
 
 # The DRAFT blocks this script knows how to remove.
+#
+# Every `.` here is written `[^\n]` on purpose. These substitutions run under
+# re.DOTALL, where `.` matches newlines, and on 18 September 2026 the charter
+# pattern below — then written with plain `.` — matched from the banner to the
+# end of the file and deleted 222 of CHARTER.md's 231 lines. The script reported
+# success. Nothing but a copy taken seconds earlier saved the document.
+#
+# The lesson is in the guardrail under strip_drafts() rather than in this
+# comment: a script that edits files irreversibly must refuse a change far
+# larger than the one it was written to make.
 DRAFT_BLOCKS = [
-    # CHARTER.md blockquote banner
-    (r"> \*\*DRAFT — pending author verification\.\*\*.*?\n(?:>.*\n)*\n", ""),
+    # CHARTER.md blockquote banner — line-anchored, cannot run past the quote
+    (r"> \*\*DRAFT — pending author verification\.\*\*[^\n]*\n(?:>[^\n]*\n)*\n", ""),
     # README status line
     (
         r"\*\*Status: v0\.1\.0 — DRAFT, pending author verification\. Not yet "
@@ -169,8 +179,16 @@ def check_signed() -> list[str]:
     return problems
 
 
-def strip_drafts(files: list[Path], dry: bool) -> list[str]:
-    changed = []
+# A DRAFT stamp is a banner: a handful of lines at most. Removing one should
+# never take a meaningful bite out of a document. If a substitution wants more
+# than this, the pattern has escaped its intended match and the right response
+# is to refuse and say so — not to write the file and let the author discover it
+# later, or never.
+MAX_LINES_REMOVED = 12
+
+
+def strip_drafts(files: list[Path], dry: bool) -> tuple[list[str], list[str]]:
+    changed, refused = [], []
     for path in files:
         if path.name == "finalize.py":
             continue
@@ -178,11 +196,23 @@ def strip_drafts(files: list[Path], dry: bool) -> list[str]:
         text = original
         for pattern, replacement in DRAFT_BLOCKS:
             text = re.sub(pattern, replacement, text, flags=re.DOTALL)
-        if text != original:
-            changed.append(str(path.relative_to(REPO_ROOT)))
-            if not dry:
-                path.write_text(text, encoding="utf-8")
-    return changed
+        if text == original:
+            continue
+
+        removed = original.count("\n") - text.count("\n")
+        if removed > MAX_LINES_REMOVED:
+            refused.append(
+                f"{path.relative_to(REPO_ROOT)}: a DRAFT pattern wanted to "
+                f"remove {removed} lines (limit {MAX_LINES_REMOVED}). The file "
+                f"was NOT written. A pattern has escaped its intended match — "
+                f"fix DRAFT_BLOCKS, do not raise the limit."
+            )
+            continue
+
+        changed.append(str(path.relative_to(REPO_ROOT)))
+        if not dry:
+            path.write_text(text, encoding="utf-8")
+    return changed, refused
 
 
 def main() -> int:
@@ -216,7 +246,15 @@ def main() -> int:
         print("Do not edit this script to get past it.")
         return 1
 
-    changed = strip_drafts(files, dry=args.check)
+    changed, refused = strip_drafts(files, dry=args.check)
+
+    if refused:
+        print("REFUSING to strip — a pattern matched far more than a banner:\n")
+        for problem in refused:
+            print(f"  {problem}")
+        print("\nNo file was written. Nothing is published.")
+        return 1
+
     if args.check:
         print(f"Checks pass. Would strip DRAFT stamps from {len(changed)} file(s):")
     else:

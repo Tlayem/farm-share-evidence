@@ -1,7 +1,6 @@
 # The Farm Share Evidence Program
 
-**Status: v0.1.0 — DRAFT, pending author verification. Not yet released. No
-research artifacts published.**
+**Status: v0.1.0 — released. No research artifacts published yet; see `docs/ARTIFACTS.md`.**
 
 Open measurement infrastructure for U.S. farm price realisation: certification,
 intermediation, and credit. Self-funded, and everything it produces is public.
