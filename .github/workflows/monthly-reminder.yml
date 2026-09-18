@@ -1,0 +1,102 @@
+name: Monthly capture reminder
+
+# Opens an issue on the first of each month telling the maintainer to take the
+# month's capture. GitHub emails the repository owner when an issue is opened,
+# so this reaches a person without depending on a calendar.
+#
+# WHY A REMINDER IS PART OF THE INFRASTRUCTURE AT ALL
+#
+# The archive's capture is a browser download that a person has to click (see
+# CHARTER.md standard 9 and docs/SOURCES.md, 18 September 2026). The automated
+# run in snapshot.yml captures only 30-80% of each register and is labelled a
+# backstop. So the complete archive depends on somebody remembering, every
+# month, for years — and a month not captured cannot be recovered at any price.
+# That is the programme's founding argument, which makes forgetting the single
+# largest risk to it. A risk that large does not belong in somebody's memory.
+#
+# WHAT THIS CANNOT DO, STATED PLAINLY
+#
+# GitHub disables scheduled workflows after about 60 days without repository
+# activity. A disabled workflow cannot tell you it has been disabled, so this
+# file cannot be its own safety net. GitHub does email the repository owner when
+# it switches one off — that email is the real backstop, and it is worth
+# treating as urgent rather than as noise. The verification checklist asks for
+# an out-of-repository reminder for exactly this reason.
+#
+# The issue stays open until closed by hand. An unclosed issue from two months
+# ago is itself a signal.
+
+on:
+  schedule:
+    - cron: '0 13 1 * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open the capture issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const now = new Date();
+            const month = now.toISOString().slice(0, 7);
+            const title = `Take the ${month} register capture`;
+
+            // Don't stack duplicates if a run is repeated or re-triggered.
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'capture',
+            });
+            if (existing.data.some(i => i.title === title)) {
+              core.info(`Issue "${title}" is already open. Nothing to do.`);
+              return;
+            }
+
+            const body = [
+              `The ${month} capture is due. This is the archive's real capture —`,
+              `the automated run is a backstop that returns 30-80% of each`,
+              `register (CHARTER.md standard 9).`,
+              ``,
+              `**A month not captured cannot be recovered at any price.**`,
+              ``,
+              `1. Download all five directories from`,
+              `   https://www.usdalocalfoodportal.com/fe/datasharing/`,
+              `   — agritourism, CSA, farmers market, food hub, on-farm market.`,
+              ``,
+              `2. Rename each to the bare name with **no extension typed**:`,
+              `   \`agritourism\`, \`csa\`, \`farmersmarket\`, \`foodhub\`,`,
+              `   \`onfarmmarket\`. Windows hides extensions, so typing \`.xlsx\``,
+              `   produces \`agritourism.xlsx.xlsx\`.`,
+              ``,
+              `3. Upload them to \`data/raw/snapshots/${month}/\` —`,
+              `   https://github.com/${context.repo.owner}/${context.repo.repo}/upload/main/data/raw/snapshots/${month}`,
+              ``,
+              `4. Append a provenance line per file to \`data/raw/PROVENANCE.txt\`,`,
+              `   with each file's SHA-256 and byte count.`,
+              `   \`code/00_adopt_manual_snapshot.py\` generates them. That log is`,
+              `   append-only — never overwrite it.`,
+              ``,
+              `5. Check the row counts against USDA's published totals before`,
+              `   committing. September 2026: 13,569 agritourism, 7,148 farmers`,
+              `   market, 4,692 on-farm market, 2,002 CSA, 480 food hub. They`,
+              `   drift month to month; a fall of more than a few per cent is`,
+              `   worth understanding rather than committing.`,
+              ``,
+              `Close this issue once the capture is committed. An issue still`,
+              `open next month means a month was missed.`,
+            ].join('\n');
+
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ['capture'],
+            });
+            core.info(`Opened #${issue.data.number}: ${title}`);
