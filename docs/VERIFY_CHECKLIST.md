@@ -221,8 +221,7 @@ I have personally completed every check above. The claims in this repository are
 true as of the date below, the numbers have been verified against their sources,
 and I can defend every statement in it.
 
-**Name:** ______________________________________
+**Name:** Taiwo Fausiyat Adesiyan
 
-**Date:** ______________________________________
-
+**Date:** 18 September 2026
 Then: `python finalize.py`, and follow your publish guide.
