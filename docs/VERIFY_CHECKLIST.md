@@ -17,16 +17,21 @@ deliberate, and the way past it is to resolve them, not to bypass the check.
 
 ## 1. The charter says what you mean
 
-- [ ] Read `CHARTER.md` start to finish, out loud if it helps.
-- [ ] The purpose in section 1 is the programme you actually intend to run.
-- [ ] The scope in section 4 — three U.S. strands plus a named comparative
-      strand — is the scope you want. If you want U.S. only, or a different
-      split, change it now; it is much harder once the charter has a DOI.
-- [ ] The standards in section 5 are ones you are willing to be held to in
-      public. Standard 6 in particular: nothing claimed before it exists.
-- [ ] Section 6, what the programme is not, is accurate — no funding, no
-      sponsorship, no consulting, no conflicts.
-- [ ] Section 7's independence and AI-assistance statements are true as written.
+- [x] **Read in full by the maintainer, 18 September 2026.**
+- [x] **Confirmed by the maintainer, 18 September 2026.** The purpose in section 1 is the
+      programme she intends to run.
+- [x] **Confirmed by the maintainer, 18 September 2026.** Three U.S. strands plus the named
+      comparative strand is the intended scope.
+- [x] **Confirmed by the maintainer, 18 September 2026**, including the two added that day:
+      standard 8 (registers archived without contact details) and standard 9
+      (completeness outranks automation).
+- [x] **Confirmed true by the maintainer, 18 September 2026.** No funding, no sponsorship,
+      no consulting, no conflicts. MTSU is named in full in section 6 and
+      explicitly disclaimed.
+- [x] **Confirmed true by the maintainer, 18 September 2026.** Self-funded, and the
+      AI-assistance disclosure is accurate as written — every claim, figure and
+      source checked by her against the original, which the week's source
+      verification bears out.
 
 ## 2. The sources are real and you have seen them
 
@@ -109,7 +114,9 @@ deliberate, and the way past it is to resolve them, not to bypass the check.
 
 ## 4. Identity and attribution
 
-- [ ] `AUTHORS.json` spells your name exactly as it should appear, everywhere.
+- [x] **Confirmed by the maintainer, 18 September 2026.** Name of record Taiwo Fausiyat
+      Adesiyan; correspondence name Taiwo Adesiyan; citation form
+      Adesiyan, T. F.
 - [x] **Checked digit by digit, 18 September 2026.** 0000-0002-2023-3624 is
       identical in `AUTHORS.json`, `CITATION.cff`, `CHARTER.md` and the site.
 - [x] **Checked 18 September 2026.** `Adesiyan, T. F.` is the citation form in
@@ -118,8 +125,9 @@ deliberate, and the way past it is to resolve them, not to bypass the check.
       same form.
 - [x] **Searched 18 September 2026.** No "Ph.D.", "PhD" or "Dr." appears in any
       document, the site, or the metadata files.
-- [ ] The affiliation statement does not imply MTSU sponsors or endorses the
-      programme, because it does not.
+- [x] **Confirmed by the maintainer, 18 September 2026.** The affiliation states where she
+      is, not who backs the work; section 6 and the site footer both disclaim
+      Middle Tennessee State University by name.
 
 ## 5. The snapshot is real and complete
 
@@ -147,11 +155,29 @@ one that counts.
       `data/raw/snapshots/2026-09/README.md` names them individually and says
       not to analyse them. Runs from now on write `*.partial.csv`. Nothing in
       this repository treats either as a full register.
-- [ ] A calendar reminder exists for the monthly download — this is now a task a
-      person does, so nothing catches a missed month automatically.
-- [ ] A second calendar reminder exists to check the Actions tab every two
-      months, because GitHub disables scheduled workflows after about 60 days of
-      repository inactivity and does so quietly enough to miss.
+- [x] **A reminder exists, built into the repository, 18 September 2026.**
+      `.github/workflows/monthly-reminder.yml` opens an issue on the first of
+      each month setting out the capture steps, and GitHub emails the repository
+      owner when an issue is opened. The issue stays open until closed by hand,
+      so one still open a month later is itself the signal that a month was
+      missed. **This replaces the calendar reminder this item originally asked
+      for**, and the substitution is recorded rather than assumed: a reminder
+      inside the repository is more durable than one in a calendar app, and less
+      independent of the thing it watches. See the next item for what it cannot
+      do.
+- [x] **Understood and covered, 18 September 2026 — but read the limit.**
+      GitHub disables scheduled workflows after about 60 days of repository
+      inactivity, and a disabled workflow cannot announce its own disabling, so
+      the reminder above is not its own safety net. Three things cover it
+      instead. First, doing the monthly capture commits to the repository, which
+      resets the 60-day clock — so the risk only materialises after a month has
+      *already* been missed. Second, the absence of the monthly issue on the
+      first is itself visible, once you expect it. Third, GitHub emails the
+      repository owner when it switches a workflow off; that email is the real
+      backstop and is to be treated as urgent rather than as noise.
+      **This is weaker than an out-of-repository reminder and is knowingly
+      accepted as such**, which is why it is written down here instead of being
+      quietly ticked.
 
 ## 6. Placeholders are filled
 
@@ -174,12 +200,18 @@ one that counts.
 
 ## 7. Read it as a stranger would
 
-- [ ] Open `site/index.html` in a browser. It says the programme is new, has
-      released nothing, and is self-funded — and a reader would come away with
-      exactly that impression, not a grander one.
-- [ ] The README's first line is the status line, and it is accurate.
-- [ ] Nothing anywhere would embarrass you if a sceptical reader — a reviewer,
-      an editor, an adjudicator, a colleague — read it closely.
+- [x] **Read on the live site by the maintainer, 18 September 2026.** A reader comes away
+      with the programme as new, self-funded, and having released nothing. A
+      sceptical re-read the same day found two documents that had stopped being
+      true and both were corrected: the site said "Seven commitments" after a
+      ninth was added, and listed the Local Food Directories access route as the
+      API after the browser download replaced it.
+- [x] **Confirmed by the maintainer, 18 September 2026.** The status line follows the title
+      and is accurate: not yet released, no research artifacts published.
+- [x] **Confirmed by the maintainer, 18 September 2026**, after an independent adversarial
+      read of the charter, the site and the source register. Two inconsistencies
+      were found and fixed before this box was ticked; nothing else in the
+      repository overstates what the programme has done.
 
 ---
 
