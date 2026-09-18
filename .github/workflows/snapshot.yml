@@ -1,8 +1,21 @@
 name: Monthly register snapshot
 
-# Takes the monthly snapshot of the USDA Local Food Directories on GitHub's
-# servers, so the preservation archive does not depend on anyone remembering to
-# run a script. See CHARTER.md section 3 for why this runs at all.
+# BACKSTOP ONLY — THIS IS NOT THE ARCHIVE'S CAPTURE.
+#
+# This calls the Local Food Directories API, which was measured on 18 September
+# 2026 to return between 30% and 80% of each register depending on the
+# directory, and about nine fields where the bulk download returns 85 to 264.
+# Its output is written as *.partial.csv and says PARTIAL CAPTURE in its
+# provenance line.
+#
+# The archive's capture is the browser download from
+# https://www.usdalocalfoodportal.com/fe/datasharing/, folded in by hand with
+# code/00_adopt_manual_snapshot.py. See CHARTER.md standard 9 and
+# docs/SOURCES.md for the measurement.
+#
+# This job exists so that a month in which nobody clicks still leaves some
+# record rather than none. It is not a substitute for the download, and nothing
+# downstream should treat it as one.
 #
 # Two ways it fires:
 #   - automatically, 06:00 UTC on the 1st of each month
@@ -44,9 +57,11 @@ jobs:
           # Stored at Settings → Secrets and variables → Actions → New repository
           # secret, named LOCALFOOD_API_KEY. Never written into a file.
           #
-          # The API is the only route a script can use: the Data Sharing page
-          # builds its downloads in the browser and serves them from a blob:
-          # URL, so there is no address for this workflow to fetch.
+          # The API is the only route a script can use — the Data Sharing
+          # page builds its downloads in the browser and serves them from a
+          # blob: URL, so there is no address for this workflow to fetch — but
+          # being the only automatable route did not make it a complete one.
+          # See the header comment.
           LOCALFOOD_API_KEY: ${{ secrets.LOCALFOOD_API_KEY }}
         run: python code/01_snapshot_registers.py --route api
 
