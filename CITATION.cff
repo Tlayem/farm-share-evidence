@@ -12,6 +12,14 @@ abstract: >-
   pipeline; no research artifacts have been released.
 version: "0.1.0"
 date-released: "2026-09-18"
+doi: "10.5281/zenodo.22834813"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22834813"
+    description: "Concept DOI — resolves to the latest version"
+  - type: doi
+    value: "10.5281/zenodo.22834814"
+    description: "Version DOI — resolves to v0.1.0 specifically"
 authors:
   - family-names: "Adesiyan"
     given-names: "Taiwo Fausiyat"

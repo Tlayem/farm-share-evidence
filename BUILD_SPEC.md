@@ -82,8 +82,12 @@ DECISIONS:      - Code under MIT; data and documents under CC BY 4.0.
 ## What v0.1.0 deliberately does not contain
 
 No datasets, no DOIs, no download counts, no adoption figures, no software
-releases, no reports. None of those exist on 15 September 2026, and the
+releases, no reports. None of those existed on 15 September 2026, and the
 programme's own standards forbid listing them before they do. The artifact
 index is empty because an empty index that is true is worth more than a full
 one that is not — and because this repository will be read, eventually, by
 people whose job is to check.
+
+*Updated 18 September 2026: v0.1.0 was released and deposited, and the programme
+now has a DOI (10.5281/zenodo.22834813, concept). That is the charter and the pipeline being
+citable. The artifact index is still empty, and still true.*

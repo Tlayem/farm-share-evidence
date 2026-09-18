@@ -103,14 +103,32 @@ GENERIC_PLACEHOLDER = re.compile(r"\[[A-Za-z][A-Za-z0-9 ._-]*\]")
 GENERIC_SCAN_SUFFIXES = {".md", ".html", ".cff", ".txt"}
 
 
+# Bracketed phrases that are part of a citation's grammar rather than a blank
+# someone forgot to fill. These are the resource-type qualifiers that reference
+# styles require, and they appear in every correctly formatted software or
+# dataset citation.
+CITATION_QUALIFIERS = {
+    "[computer software]", "[data set]", "[dataset]", "[software]",
+    "[preprint]", "[working paper]", "[technical report]", "[in press]",
+}
+
+
 def _is_real_placeholder(text: str, match: re.Match) -> bool:
     """Filter the bracketed things that are legitimately not placeholders."""
     token = match.group(0)
     if " " not in token:
         return False                      # '[bot]', '[MIT]' — not a blank to fill
+    if token.lower() in CITATION_QUALIFIERS:
+        return False                      # '[Computer software]' in a citation
     after = text[match.end(): match.end() + 1]
     if after in ("(", ":"):
         return False                      # markdown link, or link-reference definition
+    # Inside backticks the text is being quoted, not used. A document that
+    # records "the gate passed a repository containing `[project URL]`" is
+    # describing a defect, not committing one.
+    before = text[max(0, match.start() - 1): match.start()]
+    if before == "`" and after == "`":
+        return False
     return True
 
 

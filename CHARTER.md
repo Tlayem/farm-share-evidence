@@ -219,8 +219,11 @@ what changed and why.
 *Cite as: Adesiyan, T. F. (2026). The Farm Share Evidence Program: Charter,
 version 0.1.0. https://github.com/Tlayem/farm-share-evidence*
 
-*No DOI exists for this version. A DOI cannot be minted until a release is
-deposited, and a release should not carry a citation line for an identifier that
-does not yet resolve. The first Zenodo deposit mints a concept DOI covering all
-versions; it will be recorded here, and in `CITATION.cff` and
-`docs/ARTIFACTS.md`, in the version that follows.*
+*Concept DOI (all versions, resolves to the latest): 10.5281/zenodo.22834813*
+*Version DOI (this version, v0.1.0): 10.5281/zenodo.22834814*
+
+*Both were minted by Zenodo on 18 September 2026 when v0.1.0 was deposited.
+The archived copy of v0.1.0 does not itself contain these lines — an identifier
+cannot exist inside the thing it identifies — so the deposited snapshot and this
+repository differ by exactly this paragraph. That is inherent to how DOIs are
+minted, and it is said here rather than left to be noticed.*

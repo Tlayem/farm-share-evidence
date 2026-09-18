@@ -38,10 +38,14 @@ The programme itself, and nothing else yet: a charter, standards, a source
 register I have checked personally, a roadmap, and the script that takes the
 monthly snapshots.
 
-There are **no datasets, no software releases, no reports and no DOIs**.
+There are **no datasets, no reports and no research artifacts**.
 [`docs/ARTIFACTS.md`](docs/ARTIFACTS.md) is empty because there is genuinely
 nothing to list, and [`docs/ROADMAP.md`](docs/ROADMAP.md) is labelled throughout
 as plans rather than work.
+
+The programme itself is deposited and has a DOI — that is the charter and the
+pipeline being citable, not a research output. The distinction matters and
+`docs/ARTIFACTS.md` keeps it.
 
 ```
 CHARTER.md                        scope, standards, governance
@@ -161,7 +165,12 @@ The underlying federal sources are public domain, and I credit them anyway.
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff). Until the first Zenodo deposit:
+See [`CITATION.cff`](CITATION.cff).
 
-> Adesiyan, T. F. (2026). *The Farm Share Evidence Program: Charter, version
-> 0.1.0.* https://github.com/Tlayem/farm-share-evidence
+> Adesiyan, T. F. (2026). *The Farm Share Evidence Program* (Version v0.1.0)
+> [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22834814
+
+Concept DOI [`10.5281/zenodo.22834813`](https://doi.org/10.5281/zenodo.22834813) resolves to the newest
+version; version DOI [`10.5281/zenodo.22834814`](https://doi.org/10.5281/zenodo.22834814) resolves to v0.1.0
+permanently. Cite the concept DOI for the programme, the version DOI when the
+exact state matters.
