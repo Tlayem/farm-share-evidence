@@ -1,0 +1,5 @@
+# PROVENANCE LOG — Farm Share Evidence Program
+# One line per external fetch, appended at the moment of retrieval.
+# Format: JSON Lines. Fields: ts_utc, source_url, local_path, bytes,
+#   sha256, discovered_via, note
+# Never edit this file by hand. See docs/STANDARDS.md section 1.

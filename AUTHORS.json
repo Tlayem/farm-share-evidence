@@ -1,0 +1,26 @@
+{
+  "_comment": "Author block for the Farm Share Evidence Program. Every document, citation file, Zenodo record, manuscript author list, and commit identity reads from this file so the name appears identically everywhere. Name of record is the indexed byline (citation form: Adesiyan, T. F.), matching the author's existing publications. Correspondence name is used for email, bios, and cover letters only.",
+  "authors": [
+    {
+      "name": "Taiwo Fausiyat Adesiyan",
+      "family": "Adesiyan",
+      "given": "Taiwo Fausiyat",
+      "correspondence_name": "Taiwo Adesiyan",
+      "citation_form": "Adesiyan, T. F.",
+      "orcid": "0000-0002-2023-3624",
+      "email": "adesiyanfausiyat010@gmail.com",
+      "affiliation": "Middle Tennessee State University, Murfreesboro, Tennessee, USA",
+      "roles": [
+        "Conceptualization",
+        "Methodology",
+        "Software",
+        "Data curation",
+        "Validation",
+        "Writing - original draft",
+        "Project administration"
+      ],
+      "corresponding": true
+    }
+  ],
+  "collaborators": []
+}

@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it as below."
+type: software
+title: "The Farm Share Evidence Program"
+abstract: >-
+  Open measurement infrastructure for U.S. farm price realisation —
+  certification, intermediation, and credit. The programme reconstructs
+  longitudinal panels from federal operational registers that are published over
+  time, and preserves registers that are maintained only as current-state
+  listings and are otherwise lost. Version 0.1.0 establishes the programme's
+  charter, standards, verified source register, and register preservation
+  pipeline; no research artifacts have been released.
+version: "0.1.0"
+date-released: "2026-09-15"
+authors:
+  - family-names: "Adesiyan"
+    given-names: "Taiwo Fausiyat"
+    orcid: "https://orcid.org/0000-0002-2023-3624"
+    affiliation: "Middle Tennessee State University, Murfreesboro, Tennessee, USA"
+    email: "adesiyanfausiyat010@gmail.com"
+license: CC-BY-4.0
+license-url: "https://creativecommons.org/licenses/by/4.0/"
+repository-code: "https://github.com/Tlayem/farm-share-evidence"
+url: "https://tlayem.github.io/farm-share-evidence/"
+keywords:
+  - agricultural economics
+  - farm share
+  - food dollar
+  - organic certification
+  - price transmission
+  - marketing margins
+  - agricultural credit
+  - open data
+  - research data infrastructure
+  - administrative registers
