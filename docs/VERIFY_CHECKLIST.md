@@ -72,17 +72,18 @@ deliberate, and the way past it is to resolve them, not to bypass the check.
       CHARTER.md standard 9.
 - [x] **Local Food Directories API key obtained, 17 September 2026.** Required,
       not optional — without it the monthly snapshot cannot run at all.
-- [ ] **Store the key as a GitHub secret.** Repository → Settings → Secrets and
-      variables → Actions → New repository secret, named exactly
-      `LOCALFOOD_API_KEY`. Never put it in a file; the publish gate scans for
-      key-shaped strings.
-- [ ] **Fold in September's manual download.** You saved the four files to a
-      folder — that is a legitimate first month of the archive, taken before the
-      automation existed. `python code/00_adopt_manual_snapshot.py <folder>
-      --month 2026-09 --downloaded-on 2026-09-15` copies them in and records
-      honestly that they came from a browser, not a script. (The CSA directory
-      was not among them; the month will be recorded as incomplete, which is
-      correct.)
+- [x] **Key stored as a GitHub secret, 18 September 2026**, named exactly
+      `LOCALFOOD_API_KEY`, and proven by a successful workflow run. Rotated the
+      same day after the value passed through a chat window during debugging;
+      the replacement was verified by a further run. Never put in a file; the
+      publish gate scans for key-shaped strings and reports clear.
+- [x] **September's manual download folded in, 18 September 2026.** All five
+      directories, complete: 13,569 agritourism, 7,148 farmers market, 4,692
+      on-farm market, 2,002 CSA, 480 food hub — 27,891 listings, matching USDA's
+      published totals exactly. Adopted with `code/00_adopt_manual_snapshot.py`,
+      which recorded honestly that a person downloaded them. Every file's hash
+      and byte count in `data/raw/PROVENANCE.txt` was checked against the
+      committed file.
 - [x] All five sources load, are what the register says they are, and are
       openly licensed.
 - [x] Rows added to the re-verification log in `docs/SOURCES.md` for every
@@ -90,22 +91,33 @@ deliberate, and the way past it is to resolve them, not to bypass the check.
 
 ## 3. Nothing is claimed that does not exist
 
-- [ ] `docs/ARTIFACTS.md` lists no released artifacts. It should not, because
-      there are none.
-- [ ] No DOI, download count, citation count, user count, or adoption appears
-      anywhere in the repository or on the site.
-- [ ] Every item in `docs/ROADMAP.md` is unmistakably labelled as planned.
-- [ ] Search the whole repository for anything that reads as a claim about work
-      already done: `grep -ri "published\|released\|accepted\|under review" .`
-      and check each hit is describing a rule, not an accomplishment.
+- [x] **Checked 18 September 2026.** `docs/ARTIFACTS.md` lists no released
+      artifacts; the table is present but empty, with a note saying the absence
+      is a fact about the programme's age. The preservation-archive table was
+      updated the same day from `data/raw/PROVENANCE.txt` — it had still said
+      "not yet started, 0 snapshots" after the archive had begun.
+- [x] **Checked 18 September 2026** by search across every document, the site,
+      `CITATION.cff` and `AUTHORS.json`. No DOI, download count, citation count,
+      user count or adoption figure appears anywhere. Every mention of "DOI" is
+      a rule about when one will exist, or the pending line in `CHARTER.md`.
+- [x] **Checked 18 September 2026.** `docs/ROADMAP.md` opens with "Everything
+      on this page is planned work. None of it exists," and the new automation
+      section is headed "PLANNED, NOT ATTEMPTED".
+- [x] **Searched 18 September 2026.** Every hit for published / released /
+      accepted / under review describes a rule, a federal source, or the absence
+      of output. None asserts work completed by this programme.
 
 ## 4. Identity and attribution
 
 - [ ] `AUTHORS.json` spells your name exactly as it should appear, everywhere.
-- [ ] The ORCID is correct: 0000-0002-2023-3624. Check it digit by digit.
-- [ ] The byline form is `Adesiyan, T. F.`, matching your existing publications,
-      so the new record joins the old one rather than starting a second profile.
-- [ ] No "Ph.D." post-nominal appears anywhere. The degree is not conferred yet.
+- [x] **Checked digit by digit, 18 September 2026.** 0000-0002-2023-3624 is
+      identical in `AUTHORS.json`, `CITATION.cff`, `CHARTER.md` and the site.
+- [x] **Checked 18 September 2026.** `Adesiyan, T. F.` is the citation form in
+      `AUTHORS.json`, the suggested citation in `README.md`, `docs/ARTIFACTS.md`
+      and the site. `CITATION.cff` carries family/given names that render to the
+      same form.
+- [x] **Searched 18 September 2026.** No "Ph.D.", "PhD" or "Dr." appears in any
+      document, the site, or the metadata files.
 - [ ] The affiliation statement does not imply MTSU sponsors or endorses the
       programme, because it does not.
 
@@ -115,22 +127,26 @@ The archive's capture is the browser download, not the automated API run. See
 CHARTER.md standard 9 for why. Both may exist for a month; the download is the
 one that counts.
 
-- [ ] All five directories were downloaded from
+- [x] **Done 18 September 2026.** All five directories downloaded from
       https://www.usdalocalfoodportal.com/fe/datasharing/ and folded in with
       `code/00_adopt_manual_snapshot.py`.
-- [ ] `data/raw/snapshots/YYYY-MM/` holds five `.xlsx` files.
-- [ ] The row counts match USDA's own published totals. As of 18 September 2026:
-      13,569 agritourism, 7,148 farmers market, 4,692 on-farm market,
-      2,002 CSA, 480 food hub. These are exact, not approximate — the download
-      matched them row for row. A directory materially short of its total means
-      something is wrong with the capture, not with the total.
-- [ ] `listing_id` is unique within each file. Duplicates would mean the
-      download is not what it appears to be.
-- [ ] `data/raw/PROVENANCE.txt` has one line per file, each recording a MANUAL
-      browser download, with plausible byte counts and hashes.
-- [ ] Any `*.partial.csv` files present are understood to be the automated API
-      backstop, and their provenance lines say PARTIAL CAPTURE. Nothing in this
-      repository treats them as a full register.
+- [x] **Verified 18 September 2026.** `data/raw/snapshots/2026-09/` holds five
+      `.xlsx` files. Each was fetched back from GitHub and its SHA-256 and byte
+      count compared against the provenance log — all five match exactly.
+- [x] **Counted 18 September 2026, row by row: 13,569 / 7,148 / 4,692 / 2,002 /
+      480 — exact matches to USDA's published totals**, 27,891 listings in all.
+      This check is why the API route was abandoned: it returned 77%, 80%, 30%,
+      38% and 39% of these while reporting success.
+- [x] **Checked 18 September 2026.** `listing_id` is unique within every file:
+      distinct identifiers equal row counts in all five.
+- [x] **Verified 18 September 2026.** 15 records, all valid JSON: five MANUAL
+      browser downloads and ten from the API backstop. Every path named in the
+      log exists in the repository with the logged hash and byte count.
+- [x] **Understood and labelled, 18 September 2026.** The five `.csv` files in
+      `2026-09` predate the naming change, so they lack the `.partial` marker;
+      `data/raw/snapshots/2026-09/README.md` names them individually and says
+      not to analyse them. Runs from now on write `*.partial.csv`. Nothing in
+      this repository treats either as a full register.
 - [ ] A calendar reminder exists for the monthly download — this is now a task a
       person does, so nothing catches a missed month automatically.
 - [ ] A second calendar reminder exists to check the Actions tab every two
@@ -139,18 +155,22 @@ one that counts.
 
 ## 6. Placeholders are filled
 
-- [ ] The handle `Tlayem` is correct everywhere it appears — `README.md`,
-      `CITATION.cff` and `site/index.html`. It has been
-      filled in for you; check the spelling is right, because these become
-      permanent citation addresses.
-- [ ] The Pages address `https://tlayem.github.io/...` is lower-case and the
-      repository address `https://github.com/Tlayem/...` is not. That asymmetry
-      is correct; GitHub Pages addresses are always lower-case.
-- [ ] No other bracketed placeholder survives anywhere. The only one left by
-      design is the DOI line at the foot of `CHARTER.md`, which you fill in
-      after Zenodo mints it.
-- [ ] No API key, token, or password is in any file. `git status` shows nothing
-      you did not mean to commit.
+- [x] **Checked 18 September 2026.** `Tlayem` appears in `README.md`,
+      `CITATION.cff`, `BUILD_SPEC.md` and `site/index.html`, spelled identically
+      in every one. Both addresses were fetched and resolve to this repository
+      and its site, which is stronger evidence than reading the spelling.
+- [x] **Checked 18 September 2026.** Only two forms appear anywhere:
+      `github.com/Tlayem` and `tlayem.github.io`. Both resolve; the asymmetry is
+      correct.
+- [x] **Checked 18 September 2026 — and this one had failed.** The gate passed
+      a repository still containing `[project URL]` in `BUILD_SPEC.md` and
+      `[repository URL]` in `docs/ARTIFACTS.md`, because its scan listed
+      placeholders by name and neither name was on the list. Both are now
+      filled, and `finalize.py` catches placeholders by shape instead. The only
+      one left is the DOI line at the foot of `CHARTER.md`.
+- [x] **Checked 18 September 2026.** The publish gate's secret scan reports
+      clear across all tracked text files. The API key lives only in the GitHub
+      repository secret, and was rotated after passing through a chat window.
 
 ## 7. Read it as a stranger would
 

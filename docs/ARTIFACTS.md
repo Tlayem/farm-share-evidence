@@ -32,11 +32,17 @@ Not an artifact, and deliberately listed separately: the register snapshot
 archive is running infrastructure, not a release. It becomes a citable artifact
 only when a version of it is packaged, documented, and deposited.
 
-| Register | Snapshotting began | Cadence | Snapshots held | Deposited |
+| Register | Snapshotting began | Cadence | Months held | Deposited |
 |---|---|---|---|---|
-| USDA Local Food Directories (5 registers) | not yet started — begins on first harvester run | monthly | 0 | no |
+| USDA Local Food Directories (5 registers) | 18 September 2026 | monthly | 1 (2026-09) | no |
 
-Update this table from `data/raw/PROVENANCE.txt` at each release. The count is
+**2026-09** holds five complete captures (`.xlsx`, browser download, 27,891
+listings, matching USDA's published totals exactly) and five partial ones
+(`.csv`, automated API run, 30–80% of each register). The complete capture is
+the archive's; the partial one is kept because the provenance log records it.
+See CHARTER.md standard 9.
+
+Update this table from `data/raw/PROVENANCE.txt` at each release. The counts are
 read from the provenance log, never typed from memory.
 
 ---
@@ -46,7 +52,7 @@ read from the provenance log, never typed from memory.
 Until the first deposit mints a DOI, cite the charter and the repository:
 
 > Adesiyan, T. F. (2026). *The Farm Share Evidence Program: Charter, version
-> 0.1.0.* [repository URL]
+> 0.1.0.* https://github.com/Tlayem/farm-share-evidence
 
 After the first Zenodo deposit, cite the concept DOI, which resolves to the
 newest version, and add the version DOI when a specific version matters.
