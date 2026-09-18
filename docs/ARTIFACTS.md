@@ -47,12 +47,21 @@ read from the provenance log, never typed from memory.
 
 ---
 
-## How to cite the programme before there are artifacts
+## How to cite the programme
 
-Until the first deposit mints a DOI, cite the charter and the repository:
+The programme itself is deposited and citable, which is a different thing from
+having released research artifacts. It has released none; see above.
 
-> Adesiyan, T. F. (2026). *The Farm Share Evidence Program: Charter, version
-> 0.1.0.* https://github.com/Tlayem/farm-share-evidence
+> Adesiyan, T. F. (2026). *The Farm Share Evidence Program* (Version v0.1.0)
+> [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22834814
 
-After the first Zenodo deposit, cite the concept DOI, which resolves to the
-newest version, and add the version DOI when a specific version matters.
+Two DOIs exist and they are not interchangeable:
+
+| | DOI | Resolves to |
+|---|---|---|
+| **Concept** | `10.5281/zenodo.22834813` | whatever the newest version is |
+| **Version** | `10.5281/zenodo.22834814` | v0.1.0, permanently |
+
+Cite the **concept DOI** when referring to the programme, so the citation does
+not go stale. Cite the **version DOI** when the exact state of the work matters —
+reproducing a result, or quoting a figure that a later version might revise.
