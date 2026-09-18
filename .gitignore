@@ -1,0 +1,36 @@
+# Credentials — never commit. See docs/STANDARDS.md section 10.
+.env
+.env.*
+*.key
+*_key
+*_token
+secrets.*
+credentials.*
+config.local.*
+
+# Snapshots ARE committed. They are the preservation archive, and the whole
+# point is that they survive — a few megabytes a month is a cheap price, and the
+# monthly workflow commits them automatically. If the repository ever gets
+# unwieldy (say past a couple of gigabytes), move older years to a Zenodo
+# deposit and prune them here, with a changelog note saying where they went.
+# The provenance log is always committed.
+data/processed/
+*.zip
+*.parquet
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+*.egg-info/
+.pytest_cache/
+
+# OS and editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
