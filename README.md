@@ -50,7 +50,8 @@ BUILD_SPEC.md                     what was built and why
 code/00_adopt_manual_snapshot.py  fold in browser-downloaded files
 code/01_snapshot_registers.py     monthly snapshot script
 code/provenance.py                fetch logging
-.github/workflows/snapshot.yml    monthly snapshot, run by GitHub
+.github/workflows/snapshot.yml    monthly API backstop, run by GitHub
+.github/workflows/monthly-reminder.yml  opens the monthly capture issue
 docs/SOURCES.md                   verified source register
 docs/STANDARDS.md                 reproducibility and publication standards
 docs/ARTIFACTS.md                 artifact index (empty by design)
@@ -123,11 +124,15 @@ carries no contact fields at all, which is one more reason to prefer it.
 Files you download by hand are still worth keeping. `code/00_adopt_manual_snapshot.py`
 folds them into the archive and records that a person fetched them, not a script.
 
-Two things to watch. GitHub switches off scheduled workflows after about 60 days
-of quiet in a repository, so check the Actions tab every couple of months. And
-the snapshot script has never run against the live USDA endpoints from the
-environment it was written in, which blocks those hosts, so its first real run is
-mine.
+One thing to watch. GitHub switches off scheduled workflows after about 60 days
+of quiet in a repository. Committing each month's capture resets that clock, so
+the risk only arrives after a month has already been missed — but if the monthly
+reminder issue does not appear on the first, that is the sign, and GitHub emails
+me when it disables a workflow.
+
+`.github/workflows/monthly-reminder.yml` opens that issue. It exists because the
+capture is a thing a person has to remember to do, for years, and a risk that
+size does not belong in anyone's memory.
 
 ## Sources
 
