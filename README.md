@@ -1,6 +1,6 @@
 # The Farm Share Evidence Program
 
-**Status: v0.1.0 — released. No research artifacts published yet; see `docs/ARTIFACTS.md`.**
+**Status: v0.1.0 — released. One research artifact released (Retailer Churn and Food Access, [10.5281/zenodo.22884651](https://doi.org/10.5281/zenodo.22884651)); see `docs/ARTIFACTS.md` and the [site](https://tlayem.github.io/farm-share-evidence/site/).**
 
 Open measurement infrastructure for U.S. farm price realisation: certification,
 intermediation, and credit. Self-funded, and everything it produces is public.
@@ -38,10 +38,12 @@ The programme itself, and nothing else yet: a charter, standards, a source
 register I have checked personally, a roadmap, and the script that takes the
 monthly snapshots.
 
-There are **no datasets, no reports and no research artifacts**.
-[`docs/ARTIFACTS.md`](docs/ARTIFACTS.md) is empty because there is genuinely
-nothing to list, and [`docs/ROADMAP.md`](docs/ROADMAP.md) is labelled throughout
-as plans rather than work.
+The programme's released research artifacts live in their own repositories and
+are indexed, with every DOI and its current status, in
+[`docs/ARTIFACTS.md`](docs/ARTIFACTS.md) and on the
+[site](https://tlayem.github.io/farm-share-evidence/site/). As of 1 October 2026
+there is one: *Retailer Churn and Food Access* (v0.1.0). [`docs/ROADMAP.md`](docs/ROADMAP.md)
+is labelled throughout as plans rather than work.
 
 The programme itself is deposited and has a DOI — that is the charter and the
 pipeline being citable, not a research output. The distinction matters and
@@ -57,7 +59,7 @@ code/provenance.py                fetch logging
 .github/workflows/monthly-reminder.yml  opens the monthly capture issue
 docs/SOURCES.md                   verified source register
 docs/STANDARDS.md                 reproducibility and publication standards
-docs/ARTIFACTS.md                 artifact index (empty by design)
+docs/ARTIFACTS.md                 artifact index: every artifact, DOI and status
 docs/ROADMAP.md                   planned work, marked as planned
 docs/VERIFY_CHECKLIST.md          pre-release checklist
 site/index.html                   the public programme site
