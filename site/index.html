@@ -184,6 +184,26 @@ td.vintage{font-family:var(--mono);font-size:13px;color:var(--ink-muted);white-s
 }
 .empty p{margin:8px auto 0;font-size:14.5px;color:var(--ink-muted);max-width:46ch;}
 
+/* ---- artifact register ---- */
+.asof{font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);margin:0 0 6px;}
+.group{margin-top:28px;}
+.group > .label{display:block;margin-bottom:10px;}
+.art{background:var(--surface);border:1px solid var(--rule);padding:18px 20px;margin-top:12px;}
+.art-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 14px;}
+.art h3{font-family:var(--serif);font-size:18px;margin:0;}
+.chip{font-family:var(--sans);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap;}
+.chip.released{background:var(--accent-soft);color:var(--accent);}
+.chip.running{background:var(--flag-soft);color:var(--flag);}
+.chip.planned{background:transparent;color:var(--ink-faint);border:1px solid var(--rule-strong);}
+.art .what{font-size:14.5px;color:var(--ink-muted);margin:6px 0 12px;}
+.facts{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;margin:0;font-size:14px;}
+.facts dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);padding-top:2px;}
+.facts dd{margin:0;font-family:var(--mono);font-size:13px;overflow-wrap:anywhere;}
+.planned-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule);}
+.planned-list li{display:grid;grid-template-columns:1fr auto;gap:4px 14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule);font-size:14.5px;}
+.planned-list .strand-tag{font-family:var(--mono);font-size:12px;color:var(--ink-faint);}
+@media (max-width:520px){.facts{grid-template-columns:1fr;gap:0;}.facts dd{margin-bottom:8px;}}
+
 /* ---- citation ---- */
 .cite{
   font-family:var(--mono);font-size:13px;line-height:1.65;
@@ -214,7 +234,8 @@ footer p.docs a{white-space:nowrap;}
 <dl class="status">
   <div><dt class="label">Version</dt><dd>0.1.0</dd></div>
   <div><dt class="label">Founded</dt><dd>2026-09-15</dd></div>
-  <div><dt class="label">Artifacts released</dt><dd class="zero">0</dd></div>
+  <div><dt class="label">Research artifacts</dt><dd>1</dd></div>
+  <div><dt class="label">DOIs</dt><dd>4</dd></div>
   <div><dt class="label">Funding</dt><dd>Self-funded</dd></div>
 </dl>
 
@@ -322,12 +343,79 @@ footer p.docs a{white-space:nowrap;}
   </div>
 </section>
 
-<section>
+<section id="artifacts">
   <h2>Artifacts</h2>
-  <p>An artifact is listed here only when it is released and resolvable — not when it is drafted, submitted, or accepted.</p>
-  <div class="empty">
-    <div class="count">0</div>
-    <p>The programme was founded on 15 September 2026 and has released no datasets, software, reports, or papers. Planned work is described in the roadmap and is labelled as planned.</p>
+  <p class="asof">Status as of 1 October 2026</p>
+  <p>An artifact is listed as released only when it is released and resolvable — not when it is drafted, submitted, or accepted. Every DOI below resolves to a public Zenodo record. Running infrastructure and planned work are listed separately and labelled as what they are.</p>
+
+  <div class="group">
+    <span class="label">Released research artifacts · 1</span>
+
+    <article class="art">
+      <div class="art-head">
+        <h3>Retailer Churn and Food Access</h3>
+        <span class="chip released">Released · v0.1.0</span>
+      </div>
+      <p class="what">Working paper with a full replication package. Turns USDA's 20-year file of SNAP-authorised retailers into store- and address-level spells and measures how often food-access infrastructure comes and goes. Intermediation strand: SNAP retailers as a register of food-access infrastructure.</p>
+      <dl class="facts">
+        <dt>Type</dt><dd>Working paper + replication package</dd>
+        <dt>Released</dt><dd>21 September 2026</dd>
+        <dt>Version DOI</dt><dd><a href="https://doi.org/10.5281/zenodo.22884651">10.5281/zenodo.22884651</a></dd>
+        <dt>Concept DOI</dt><dd><a href="https://doi.org/10.5281/zenodo.22884650">10.5281/zenodo.22884650</a></dd>
+        <dt>Repository</dt><dd><a href="https://github.com/Tlayem/retailer-churn">github.com/Tlayem/retailer-churn</a></dd>
+        <dt>Licence</dt><dd>Code MIT · data and documents CC BY 4.0</dd>
+        <dt>Cite</dt><dd>Adesiyan, T. F. (2026). <em>Retailer Churn and Food Access</em> (Version 0.1.0). Working paper. Zenodo. https://doi.org/10.5281/zenodo.22884651</dd>
+      </dl>
+    </article>
+  </div>
+
+  <div class="group">
+    <span class="label">The programme itself</span>
+    <article class="art">
+      <div class="art-head">
+        <h3>The Farm Share Evidence Program</h3>
+        <span class="chip released">Released · v0.1.0</span>
+      </div>
+      <p class="what">The charter, standards, verified source register, roadmap and snapshot pipeline. Deposited and citable — which makes the infrastructure citable, not a research output, and it is not counted as one above.</p>
+      <dl class="facts">
+        <dt>Released</dt><dd>18 September 2026</dd>
+        <dt>Version DOI</dt><dd><a href="https://doi.org/10.5281/zenodo.22834814">10.5281/zenodo.22834814</a></dd>
+        <dt>Concept DOI</dt><dd><a href="https://doi.org/10.5281/zenodo.22834813">10.5281/zenodo.22834813</a></dd>
+        <dt>Repository</dt><dd><a href="https://github.com/Tlayem/farm-share-evidence">github.com/Tlayem/farm-share-evidence</a></dd>
+      </dl>
+    </article>
+  </div>
+
+  <div class="group">
+    <span class="label">Running infrastructure · not deposited</span>
+    <article class="art">
+      <div class="art-head">
+        <h3>Local Food Directories preservation archive</h3>
+        <span class="chip running">Running · monthly</span>
+      </div>
+      <p class="what">Monthly snapshots of the five USDA Local Food Directories, which keep no public history. Not an artifact: it becomes one only when a version is packaged, documented and deposited.</p>
+      <dl class="facts">
+        <dt>Began</dt><dd>18 September 2026</dd>
+        <dt>2026-09</dt><dd>Complete capture · 27,891 listings · browser download</dd>
+        <dt>2026-10</dt><dd>Automated backstop run 1 October (partial); complete browser capture not yet taken</dd>
+        <dt>Log</dt><dd><a href="https://github.com/Tlayem/farm-share-evidence/blob/main/data/raw/PROVENANCE.txt">data/raw/PROVENANCE.txt</a></dd>
+      </dl>
+    </article>
+  </div>
+
+  <div class="group">
+    <span class="label">Planned · none of this exists yet</span>
+    <ul class="planned-list">
+      <li><span>Technical audit of USDA AMS Market News coverage</span><span class="strand-tag">intermediation</span></li>
+      <li><span>Farm-share baseline note on the ERS Food Dollar Series</span><span class="strand-tag">programme</span></li>
+      <li><span>The Organic Certification Panel (operation-spell dataset)</span><span class="strand-tag">certification</span></li>
+      <li><span>Certification spells analysis: entry, exit and survival</span><span class="strand-tag">certification</span></li>
+      <li><span>Marketing margin and price transmission tooling</span><span class="strand-tag">intermediation</span></li>
+      <li><span>Local food intermediary inventory</span><span class="strand-tag">intermediation</span></li>
+      <li><span>Farm credit coverage reconciliation (CRA, FCA, NCUA)</span><span class="strand-tag">credit</span></li>
+      <li><span>Cocoa marketing institutions, coded by country and year</span><span class="strand-tag">comparative</span></li>
+    </ul>
+    <p style="margin-top:14px;font-size:14.5px;color:var(--ink-muted)">Details and sequencing are in the <a href="https://github.com/Tlayem/farm-share-evidence/blob/main/docs/ROADMAP.md">roadmap</a>. Technical comments filed in public dockets in the maintainer's individual capacity are listed here once the agency has posted them publicly.</p>
   </div>
 </section>
 
