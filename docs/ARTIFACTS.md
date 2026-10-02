@@ -13,15 +13,20 @@ charter and it has no exceptions.
 
 ## Released artifacts
 
-**None.** The programme was founded on 15 September 2026 and has released no
-datasets, software, reports, or papers.
+Status as of 1 October 2026. **One** released research artifact.
 
-The table below is the form entries take once there are any. It is left here
-empty rather than deleted, so that the absence is legible as a fact about the
-programme's age rather than an omission in its documentation.
+| Released | Artifact | Type | Version | DOI (version) | DOI (concept) | Repository | Licence |
+|---|---|---|---|---|---|---|---|
+| 2026-09-21 | Retailer Churn and Food Access | Working paper + replication package (intermediation strand) | 0.1.0 | [10.5281/zenodo.22884651](https://doi.org/10.5281/zenodo.22884651) | [10.5281/zenodo.22884650](https://doi.org/10.5281/zenodo.22884650) | [Tlayem/retailer-churn](https://github.com/Tlayem/retailer-churn) | MIT (code), CC BY 4.0 (data, documents) |
 
-| Released | Artifact | Type | Version | DOI | Repository | Licence |
-|---|---|---|---|---|---|---|
+> Adesiyan, T. F. (2026). *Retailer Churn and Food Access* (Version 0.1.0).
+> Working paper. Zenodo. https://doi.org/10.5281/zenodo.22884651
+
+Technical comments filed in public dockets in the maintainer's individual
+capacity are added here once the agency has posted them publicly, with the
+docket's own identifier in place of a DOI.
+
+---|---|---|---|---|---|---|
 | — | — | — | — | — | — | — |
 
 ---
@@ -34,7 +39,7 @@ only when a version of it is packaged, documented, and deposited.
 
 | Register | Snapshotting began | Cadence | Months held | Deposited |
 |---|---|---|---|---|
-| USDA Local Food Directories (5 registers) | 18 September 2026 | monthly | 1 (2026-09) | no |
+| USDA Local Food Directories (5 registers) | 18 September 2026 | monthly | 1 complete (2026-09); 2026-10 partial backstop only, complete capture not yet taken | no |
 
 **2026-09** holds five complete captures (`.xlsx`, browser download, 27,891
 listings, matching USDA's published totals exactly) and five partial ones
@@ -50,7 +55,7 @@ read from the provenance log, never typed from memory.
 ## How to cite the programme
 
 The programme itself is deposited and citable, which is a different thing from
-having released research artifacts. It has released none; see above.
+having released research artifacts. Those are listed above.
 
 > Adesiyan, T. F. (2026). *The Farm Share Evidence Program* (Version v0.1.0)
 > [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.22834814
