@@ -13,7 +13,7 @@ charter and it has no exceptions.
 
 ## Released artifacts
 
-Status as of 1 October 2026. **One** released research artifact.
+Status as of 10 October 2026. **One** released research artifact.
 
 | Released | Artifact | Type | Version | DOI (version) | DOI (concept) | Repository | Licence |
 |---|---|---|---|---|---|---|---|
@@ -22,12 +22,22 @@ Status as of 1 October 2026. **One** released research artifact.
 > Adesiyan, T. F. (2026). *Retailer Churn and Food Access* (Version 0.1.0).
 > Working paper. Zenodo. https://doi.org/10.5281/zenodo.22884651
 
-Technical comments filed in public dockets in the maintainer's individual
-capacity are added here once the agency has posted them publicly, with the
-docket's own identifier in place of a DOI.
+---
 
----|---|---|---|---|---|---|
-| — | — | — | — | — | — | — |
+## Filings in public dockets
+
+Technical comments filed in the maintainer's individual capacity. These are not
+research artifacts and carry no DOI; they are listed once the agency has posted
+them publicly, with the docket's own identifier in place of one.
+
+| Filed | Filing | Agency | Docket | Identifier | Record | Copy |
+|---|---|---|---|---|---|---|
+| 2026-10-07 | Comments of Taiwo Fausiyat Adesiyan | FCC | WC 26-96; WC 10-90 | ECFS Submission ID 26110079855 | [ECFS](https://www.fcc.gov/ecfs/search/search-filings/filing/26110079855) | [docs/filings/fcc-wc26-96](filings/fcc-wc26-96/) |
+
+> Adesiyan, T. F. (2026). *Comments of Taiwo Fausiyat Adesiyan*, WC Docket Nos.
+> 26-96 and 10-90, Reforming the High-Cost Program for an All-IP Future.
+> Federal Communications Commission, filed 7 October 2026.
+> ECFS Submission ID 26110079855.
 
 ---
 
