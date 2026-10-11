@@ -32,7 +32,12 @@ them publicly, with the docket's own identifier in place of one.
 
 | Filed | Filing | Agency | Docket | Identifier | Record | Copy |
 |---|---|---|---|---|---|---|
+| 2026-09-30 | Comment on the Revised Size Standards Methodology, applied to farming | SBA | SBA-2026-0265 | Comment ID SBA-2026-0265-0902 | [Regulations.gov](https://www.regulations.gov/comment/SBA-2026-0265-0902) | [docs/filings/sba-2026-0265](filings/sba-2026-0265/) |
 | 2026-10-07 | Comments of Taiwo Fausiyat Adesiyan | FCC | WC 26-96; WC 10-90 | ECFS Submission ID 26110079855 | [ECFS](https://www.fcc.gov/ecfs/search/search-filings/filing/26110079855) | [docs/filings/fcc-wc26-96](filings/fcc-wc26-96/) |
+
+> Adesiyan, T. F. (2026). *Comment on Docket SBA-2026-0265, Small Business Size
+> Standards: Revised Size Standards Methodology*. U.S. Small Business
+> Administration, filed 30 September 2026. Comment ID SBA-2026-0265-0902.
 
 > Adesiyan, T. F. (2026). *Comments of Taiwo Fausiyat Adesiyan*, WC Docket Nos.
 > 26-96 and 10-90, Reforming the High-Cost Program for an All-IP Future.
