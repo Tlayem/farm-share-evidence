@@ -195,6 +195,7 @@ td.vintage{font-family:var(--mono);font-size:13px;color:var(--ink-muted);white-s
 .chip.released{background:var(--accent-soft);color:var(--accent);}
 .chip.running{background:var(--flag-soft);color:var(--flag);}
 .chip.planned{background:transparent;color:var(--ink-faint);border:1px solid var(--rule-strong);}
+.chip.filed{background:transparent;color:var(--accent);border:1px solid var(--accent);}
 .art .what{font-size:14.5px;color:var(--ink-muted);margin:6px 0 12px;}
 .facts{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;margin:0;font-size:14px;}
 .facts dt{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);padding-top:2px;}
@@ -236,6 +237,7 @@ footer p.docs a{white-space:nowrap;}
   <div><dt class="label">Founded</dt><dd>2026-09-15</dd></div>
   <div><dt class="label">Research artifacts</dt><dd>1</dd></div>
   <div><dt class="label">DOIs</dt><dd>4</dd></div>
+  <div><dt class="label">Docket filings</dt><dd>1</dd></div>
   <div><dt class="label">Funding</dt><dd>Self-funded</dd></div>
 </dl>
 
@@ -345,7 +347,7 @@ footer p.docs a{white-space:nowrap;}
 
 <section id="artifacts">
   <h2>Artifacts</h2>
-  <p class="asof">Status as of 1 October 2026</p>
+  <p class="asof">Status as of 10 October 2026</p>
   <p>An artifact is listed as released only when it is released and resolvable — not when it is drafted, submitted, or accepted. Every DOI below resolves to a public Zenodo record. Running infrastructure and planned work are listed separately and labelled as what they are.</p>
 
   <div class="group">
@@ -387,6 +389,25 @@ footer p.docs a{white-space:nowrap;}
   </div>
 
   <div class="group">
+    <span class="label">Filings in public dockets · 1</span>
+    <article class="art">
+      <div class="art-head">
+        <h3>Comment on FCC WC Docket Nos. 26-96 and 10-90</h3>
+        <span class="chip filed">Filed · on the record</span>
+      </div>
+      <p class="what">A technical comment in the FCC's High-Cost Program rulemaking, filed in the maintainer's individual capacity. It argues that a competing provider should count against a carrier's support only where its service is priced at or below the Commission's reasonable comparability benchmark, and that mapping data should be treated as a versioned register: each decision pinned to a named release, published and archived, reconciled against published totals, with persistence required before support is cut and symmetric restoration when competing service disappears. The second argument draws on this programme's finding that the USDA Local Food Directories API returned 30–80% of the bulk download with no error reported.</p>
+      <dl class="facts">
+        <dt>Type</dt><dd>Public comment · not a research artifact, no DOI</dd>
+        <dt>Filed</dt><dd>7 October 2026 · received, posted and disseminated the same day</dd>
+        <dt>Proceeding</dt><dd>Reforming the High-Cost Program for an All-IP Future (FCC 26-35)</dd>
+        <dt>Record</dt><dd><a href="https://www.fcc.gov/ecfs/search/search-filings/filing/26110079855">ECFS Submission ID 26110079855</a></dd>
+        <dt>Copy</dt><dd><a href="https://github.com/Tlayem/farm-share-evidence/blob/main/docs/filings/fcc-wc26-96/">docs/filings/fcc-wc26-96/</a></dd>
+        <dt>Cite</dt><dd>Adesiyan, T. F. (2026). <em>Comments of Taiwo Fausiyat Adesiyan</em>, WC Docket Nos. 26-96 and 10-90. Federal Communications Commission, filed 7 October 2026. ECFS Submission ID 26110079855.</dd>
+      </dl>
+    </article>
+  </div>
+
+  <div class="group">
     <span class="label">Running infrastructure · not deposited</span>
     <article class="art">
       <div class="art-head">
@@ -415,7 +436,7 @@ footer p.docs a{white-space:nowrap;}
       <li><span>Farm credit coverage reconciliation (CRA, FCA, NCUA)</span><span class="strand-tag">credit</span></li>
       <li><span>Cocoa marketing institutions, coded by country and year</span><span class="strand-tag">comparative</span></li>
     </ul>
-    <p style="margin-top:14px;font-size:14.5px;color:var(--ink-muted)">Details and sequencing are in the <a href="https://github.com/Tlayem/farm-share-evidence/blob/main/docs/ROADMAP.md">roadmap</a>. Technical comments filed in public dockets in the maintainer's individual capacity are listed here once the agency has posted them publicly.</p>
+    <p style="margin-top:14px;font-size:14.5px;color:var(--ink-muted)">Details and sequencing are in the <a href="https://github.com/Tlayem/farm-share-evidence/blob/main/docs/ROADMAP.md">roadmap</a>. Technical comments filed in public dockets in the maintainer's individual capacity appear above, under filings, once the agency has posted them publicly.</p>
   </div>
 </section>
 
